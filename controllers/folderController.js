@@ -29,11 +29,17 @@ const myFoldersIndex = (req, res) => {
 
 const showFolder = (req, res) => {
   const id = req.params.id
+  const userId = req.session.passport.user.id
 
   Folder.findByPk(id)
   .then(data => {
     if (data) {
-      res.send(data)
+      if (data.UserId == userId) {
+        console.log("HERE", data.UserId)
+        res.send(data)
+      } else {
+        res.status(401).send("Unauthorized content")
+      }
     } else {
       res.status(404).send({
         message: `Cannot find Folder ${id}`
