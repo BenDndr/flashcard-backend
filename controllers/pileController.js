@@ -1,7 +1,9 @@
 import Pile from "../models/piles.js"
+// import Folder from "../models/folders.js"
 
 const indexPile = (req, res) => {
   const id = req.params.id
+  const userId = req.session.passport.user.id
 
   Pile.findAll({where: {FolderId: id}})
   .then(data => {
