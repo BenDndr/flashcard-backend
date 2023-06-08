@@ -1,7 +1,6 @@
 import Folder from '../models/folders.js'
 
 const indexFolders = (req, res) => {
-  console.log("SESSION", req.session)
   Folder.findAll()
   .then(data => {
     res.send(data)

@@ -1,9 +1,8 @@
 import Pile from "../models/piles.js"
-// import Folder from "../models/folders.js"
+import Folder from "../models/folders.js"
 
 const indexPile = (req, res) => {
   const id = req.params.id
-  const userId = req.session.passport.user.id
 
   Pile.findAll({where: {FolderId: id}})
   .then(data => {
@@ -18,11 +17,19 @@ const indexPile = (req, res) => {
 
 const showPile = (req, res) => {
   const id = req.params.id
+  const userId = req.session.passport.user.id
 
   Pile.findByPk(id)
   .then(data => {
     if (data) {
-      res.send(data)
+      Folder.findByPk(data.FolderId)
+      .then(dataFolder => {
+        if (dataFolder.UserId != userId) {
+          res.status(401).send("Unauthorized content")
+        } else {
+          res.send(data)
+        }
+      })
     } else {
       res.status(404).send({
         message: `Cannot find Pile ${id}`
