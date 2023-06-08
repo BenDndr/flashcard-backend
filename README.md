@@ -1,10 +1,10 @@
 ## Flashcard
 
-This is the Backend of my project Flashcard for 3wa Acamedy.
+This is the Backend of my project Flashcard for 3wa Academy.
 
 ## Initialize
 
-Once you've get the project locally, run
+Once you've get the project locally, run:
 
 ```bash
 npm install
