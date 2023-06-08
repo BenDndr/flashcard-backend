@@ -9,9 +9,10 @@ import session from 'express-session'
 
 const app = express()
 dotenv.config()
-const { APP_LOCALHOST: hostname, APP_PORT: port, APP_SECRET: secret, DB_NAME: name, DB_USER: user, DB_PASSWORD: password, DB_DIALECT: dialect} = process.env
+const { APP_LOCALHOST: hostname, APP_PORT: port, APP_SECRET: secret} = process.env
 
 app.use(express.json())
+
 app.use(cors({
   origin: 'http://localhost:3000', // A remplacer par le nom de domaine du client
   credentials: true
@@ -23,7 +24,7 @@ app.use(session({
   saveUninitialized:false,
   cookie: {maxAge: 60 * 60 * 60 * 1000}
 }))
-// app.use(passport.authenticate('session'));
+
 app.use(passport.initialize())
 app.use(passport.session())
 

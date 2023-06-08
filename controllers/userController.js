@@ -1,26 +1,5 @@
 import User from "../models/users.js"
 import sha512 from 'crypto-js/sha512.js'
-import jwt from "jsonwebtoken"
-
-// const showUser = (req, res) => {
-//   const id = req.params.id
-
-//   User.findByPk(id)
-//   .then(data => {
-//     if (data) {
-//       res.send(data)
-//     } else {
-//       res.status(404).send({
-//         message: `Cannot find User ${id}`
-//       })
-//     }
-//   })
-//   .catch(err => {
-//     res.status(500).send({
-//       message: `Error retrieving User ${id}`
-//     })
-//   })
-// }
 
 const createUser = (req, res) => {
   const {body} = req
@@ -41,55 +20,6 @@ const createUser = (req, res) => {
     })
   })
 }
-
-// const updateUser = (req, res) => {
-//   const id = req.params.id
-//   const {body} = req
-//   body.password = sha512(body.password).toString()
-//   body.newPassword = sha512(body.newPassword).toString()
-
-//   const newUserInfos = {
-//     username: body.username,
-//     password: body.newPassword
-//   }
-
-//   User.findByPk(id)
-//   .then(data => {
-//     if (data) {
-//       if (body.password == data.password) {
-//         User.update(newUserInfos, {where: {id: id}})
-//         .then(num => {
-//           if (num == 1) {
-//             res.send({
-//               message: `User ${id} Updated Successfully`
-//             })
-//           } else {
-//             console.log(sha512(body.password).toString())
-//             res.send({
-//               message: `Error while trying to update User ${id}`
-//             })
-//           }
-//         })
-//         .catch(err => {
-//           res.status(500).send({
-//             message: `Could not update User ${id}`
-//           })
-//         })
-//       } else {
-//         res.status(401).send({message: "Wrong password"})
-//       }
-//     } else {
-//       res.status(404).send({
-//         message: `Cannot find User ${id}`
-//       })
-//     }
-//   })
-//   .catch(err => {
-//     res.status(500).send({
-//       message: `Error retrieving User ${id}`
-//     })
-//   })
-// }
 
 const deleteUser = (req, res) => {
   const id = req.params.id
@@ -131,5 +61,3 @@ const login = async (username, password, done) => {
 }
 
 export default {login, createUser, deleteUser}
-
-// export default {showUser, createUser, updateUser, deleteUser}
