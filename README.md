@@ -11,10 +11,10 @@ npm install
 ```
 To install all the dependencies.
 
-You can also use the dump of the database to have a populated database although all the data on the app is user generated, the app shoulb be working just by building the database by changing l37 of server.js file to:
+You can also use the dump of the database to have a populated database although all the data on the app is user generated, the app shoulb be working just by building the database's tables by changing l37 of server.js file to:
 
 ```javascript
-{force: false}
+{force: true}
 ```
 
 In case you use the dump, users are :
